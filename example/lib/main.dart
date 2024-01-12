@@ -8,6 +8,7 @@ import 'package:win_ble/win_file.dart';
 import 'package:win_ble_example/device_info.dart';
 
 import 'connect_screen.dart';
+import 'connection_screen.dart';
 import 'menu_screen.dart';
 
 void main() {
@@ -103,7 +104,7 @@ class _MyAppState extends State<MyApp> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => MenuScreen(
+          builder: (context) => ConnectionScreen(
                 device: device,
               )),
     );

@@ -334,3 +334,73 @@ class _MenuScreenState extends State<MenuScreen> {
         ));
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// await _sendCommand([0x0B], 2);
+// await _sendCommand([0xEB], 2);
+// await _sendCommand([0x08], 2);
+// await _sendCommand([0x00], 2);
+// String dir = Directory.current.path;
+//
+// String filePath = '$dir/values.txt';
+//
+// File file = File(filePath);
+// final iosink = file.openWrite();
+// final now = DateTime.now();
+// var timeFormat = DateFormat("HH:mm:ss");
+// String timePortion = timeFormat.format(now);
+// iosink.write("${timePortion.toUpperCase()}\n");
+// WinBle.characteristicValueStream.listen((event) {
+// List<int> data = List<int>.from(event['value']);
+//
+// final str = data
+//     .map((e) => e.toRadixString(16).padLeft(2, "0"))
+//     .toList();
+// final flagsSet = Set.from(
+// "c0,c1,c2,c3,c4,c5,c6,c7,c8,c9,ca,cb,cc,cd,ce,cf,d0,d1"
+//     .split(","));
+// var bleData = str
+//     .map((s) => flagsSet.contains(s) ? '\n$s' : ' $s')
+//     .join();
+// iosink.write(bleData.toUpperCase());
+// });
+//
+// await WinBle.subscribeToCharacteristic(
+// address: widget.device.address,
+// serviceId: serviceID,
+// characteristicId: readC);
