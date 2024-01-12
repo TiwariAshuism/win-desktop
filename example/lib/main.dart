@@ -1,11 +1,14 @@
 // ignore_for_file: avoid_print
 
-import 'dart:async';
+import  'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:win_ble/win_ble.dart';
 import 'package:win_ble/win_file.dart';
 import 'package:win_ble_example/device_info.dart';
+
+import 'connect_screen.dart';
+import 'menu_screen.dart';
 
 void main() {
   runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
@@ -100,7 +103,7 @@ class _MyAppState extends State<MyApp> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => DeviceInfo(
+          builder: (context) => MenuScreen(
                 device: device,
               )),
     );
@@ -116,6 +119,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Win BLe"),
@@ -169,6 +173,9 @@ class _MyAppState extends State<MyApp> {
                         itemCount: devices.length,
                         itemBuilder: (BuildContext context, int index) {
                           BleDevice device = devices[index];
+                          if(device.name.isEmpty){
+                            return Container();
+                          }
                           return InkWell(
                             onTap: () {
                               stopScanning();

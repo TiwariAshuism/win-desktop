@@ -52,7 +52,7 @@ class WinBle {
   }
 
   static void _handleMessages(message) {
-    WinHelper.printLog("Received Message : $message");
+    //WinHelper.printLog("Received Message : $message");
     switch (message["_type"]) {
       /// ScanResult events
       case "scanResult":
