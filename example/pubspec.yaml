@@ -1,5 +1,5 @@
-name: win_ble_example
-description: Demonstrates how to use the win_ble plugin.
+name: Qneuro
+description: Windows Ble plugin.
 publish_to: "none"
 environment:
   sdk: ">=2.16.0 <3.0.0"
@@ -10,6 +10,7 @@ dependencies:
   win_ble:
     path: ../
   cupertino_icons: ^1.0.2
+  msix: ^3.16.7
 
 dev_dependencies:
   flutter_test:

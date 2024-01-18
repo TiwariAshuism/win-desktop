@@ -5,11 +5,8 @@ import  'dart:async';
 import 'package:flutter/material.dart';
 import 'package:win_ble/win_ble.dart';
 import 'package:win_ble/win_file.dart';
-import 'package:win_ble_example/device_info.dart';
 
-import 'connect_screen.dart';
 import 'connection_screen.dart';
-import 'menu_screen.dart';
 
 void main() {
   runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));

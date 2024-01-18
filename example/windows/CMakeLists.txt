@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(win_ble_example LANGUAGES CXX)
+project(Q-neuro LANGUAGES CXX)
 
-set(BINARY_NAME "win_ble_example")
+set(BINARY_NAME "Q-neuro")
 
 cmake_policy(SET CMP0063 NEW)
 
