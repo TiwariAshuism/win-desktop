@@ -2,6 +2,7 @@
 
 import  'dart:async';
 
+import 'package:Qneuro/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:win_ble/win_ble.dart';
 import 'package:win_ble/win_file.dart';
@@ -9,7 +10,7 @@ import 'package:win_ble/win_file.dart';
 import 'connection_screen.dart';
 
 void main() {
-  runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
+  runApp( MaterialApp(debugShowCheckedModeBanner: false,theme: ThemeData(useMaterial3: true), home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {

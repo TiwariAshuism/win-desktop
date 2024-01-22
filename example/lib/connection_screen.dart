@@ -27,6 +27,9 @@ class _ConnectionScreenState extends State<ConnectionScreen> {
   StreamController _countController = StreamController<int>();
   StreamController<bool> _connectController =
       StreamController<bool>.broadcast();
+  StreamController<bool> _streamingDataController =
+      StreamController<bool>.broadcast();
+  bool _isStreaming = false;
   Future<void> establishConnection() async {
     device = widget.device;
     WinBle.connectionStreamOf(device.address).listen((connected) async {
@@ -54,6 +57,7 @@ class _ConnectionScreenState extends State<ConnectionScreen> {
             await _sendCommand([0xEB], 2);
             await _sendCommand([0x08], 2);
             await _sendCommand([0x00], 2);
+
           }
           final now = DateTime.now();
           var timeFormat = DateFormat("yyyyMMDDHHmmss");
@@ -121,6 +125,35 @@ class _ConnectionScreenState extends State<ConnectionScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(
+                  "Streaming : ".toUpperCase(),
+                  style: TextStyle(fontSize: 39,fontWeight: FontWeight.bold),
+                ),StreamBuilder<Object>(
+                  stream: _streamingDataController.stream,
+                  builder: (context, snapshot) {
+                    if(snapshot.hasData){
+                      return Text(
+                        snapshot.data.toString().toUpperCase(),
+                        style: TextStyle(fontSize: 39,fontWeight: FontWeight.bold,),
+                      );
+                    }
+                    else
+                      {
+                        return Text(
+                          false.toString(),
+                          style: TextStyle(fontSize: 39,fontWeight: FontWeight.bold),
+                        );
+                      }
+                  }
+                )
+              ],
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 StreamBuilder(
                     stream: _countController.stream,
                     builder: (context, snapshot) {
@@ -180,6 +213,7 @@ class _ConnectionScreenState extends State<ConnectionScreen> {
                         characteristic: writeC,
                         data: Uint8List.fromList([0xAA]),
                         writeWithResponse: true);
+                    _streamingDataController.sink.add(true);
                   },
                   child: Text('Start Streaming'),
                 ),
@@ -193,9 +227,11 @@ class _ConnectionScreenState extends State<ConnectionScreen> {
                         data: Uint8List.fromList([0xFF]),
                         writeWithResponse: true);
                     _countController.sink.add(_countedData);
+                    _streamingDataController.sink.add(false);
                   },
                   child: Text('Stop Streaming'),
                 ),
+
                 SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () async {

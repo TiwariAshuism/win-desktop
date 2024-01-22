@@ -49,7 +49,9 @@ class _DeviceInfoState extends State<DeviceInfo> {
     try {
       await WinBle.connect(address);
     } catch (e) {
+      print(e);
       setState(() {
+
         error = e.toString();
       });
     }
@@ -70,6 +72,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
       await WinBle.pair(address);
       showSuccess("Paired Successfully");
     } catch (e) {
+      print(e);
       showError("PairError : $e");
       setState(() {
         error = e.toString();
@@ -82,6 +85,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
       await WinBle.unPair(address);
       showSuccess("UnPaired Successfully");
     } catch (e) {
+      print(e);
       showError("UnPairError : $e");
       setState(() {
         error = e.toString();
@@ -94,6 +98,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
       await WinBle.disconnect(address);
       showSuccess("Disconnected");
     } catch (e) {
+      print(e);
       if (!mounted) return;
       showError(e.toString());
     }
@@ -107,6 +112,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
         services = data;
       });
     } catch (e) {
+      print(e);
       showError("DiscoverServiceError : $e");
       setState(() {
         error = e.toString();
@@ -123,6 +129,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
         characteristics = bleChar;
       });
     } catch (e) {
+      print(e);
       showError("DiscoverCharError : $e");
       setState(() {
         error = e.toString();
@@ -140,6 +147,8 @@ class _DeviceInfoState extends State<DeviceInfo> {
             "Read => List<int> : $data    ,    ToString :  ${String.fromCharCodes(data)}   , Time : ${DateTime.now()}";
       });
     } catch (e) {
+      print(e);
+
       showError("ReadCharError : $e");
       setState(() {
         error = e.toString();
@@ -157,6 +166,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
           data: data,
           writeWithResponse: writeWithResponse);
     } catch (e) {
+      print(e);
       showError("writeCharError : $e");
       setState(() {
         error = e.toString();
@@ -170,6 +180,7 @@ class _DeviceInfoState extends State<DeviceInfo> {
           address: address, serviceId: serviceID, characteristicId: charID);
       showSuccess("Subscribe Successfully");
     } catch (e) {
+      print(e);
       showError("SubscribeCharError : $e");
       setState(() {
         error = e.toString() + " Date ${DateTime.now()}";
@@ -183,8 +194,10 @@ class _DeviceInfoState extends State<DeviceInfo> {
           address: address, serviceId: serviceID, characteristicId: charID);
       showSuccess("Unsubscribed Successfully");
     } catch (e) {
+      print(e);
       showError("UnSubscribeError : $e");
       setState(() {
+
         error = e.toString() + " Date ${DateTime.now()}";
       });
     }
